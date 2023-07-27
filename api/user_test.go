@@ -59,10 +59,10 @@ func TestCreateUserAPI(t *testing.T) {
 		{
 			name: "OK",
 			body: gin.H{
-				"username": user.Username,
-				"password": password,
-				"fullname": user.FullName,
-				"email":    user.Email,
+				"username":  user.Username,
+				"password":  password,
+				"full_name": user.FullName,
+				"email":     user.Email,
 			},
 			buildStubs: func(store *mockdb.MockStore) {
 				arg := db.CreateUserParams{
@@ -111,7 +111,7 @@ func TestCreateUserAPI(t *testing.T) {
 			tc.buildStubs(store)
 
 			//start test server and send request
-			server := NewServer(store)
+			server := newTestServer(t, store)
 			recorder := httptest.NewRecorder()
 
 			// Marshal body data to JSON
