@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 services:
   postgres:
     image: postgres:15-alpine
@@ -12,6 +12,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+      - "8888:8888"
     environment:
       - DB_SOURCE=postgresql://root:secret@postgres:5432/simple_bank?sslmode=disable
     depends_on:
