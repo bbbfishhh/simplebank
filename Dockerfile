@@ -14,8 +14,8 @@ COPY --from=builder /app/main .
 COPY app.env .
 COPY start.sh .
 COPY wait-for.sh .
-RUN chmod +x start.sh
-RUN chmod +x wait-for.sh
+RUN chmod +x /app/start.sh
+RUN chmod +x /app/wait-for.sh
 COPY db/migration ./db/migration
 
 EXPOSE 8888
