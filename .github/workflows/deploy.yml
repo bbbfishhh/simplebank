@@ -19,7 +19,7 @@ jobs:
         login-server: https://registry.cn-hangzhou.aliyuncs.com # default: https://index.docker.io/v1/
         username: "${{ secrets.ACR_USERNAME }}"
         password: "${{ secrets.ACR_PASSWORD }}"
-    - name: Build and push image to ALi ECR
+    - name: Build and push image to ALi ECR 
       env:
         IMAGE_TAG: ${{ github.sha }}
       run: |
