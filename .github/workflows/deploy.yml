@@ -16,8 +16,9 @@ jobs:
       uses: aliyun/acr-login@v1
       with:
         region-id: cn-hangzhou # example: cn-hangzhou
-        access-key-id: "${{ secrets.ALI_ACCESS_KEY_ID }}"
-        access-key-secret: "${{ secrets.ALI_ACCESS_KEY_SECRET }}"
+        login-server: https://registry.cn-hangzhou.aliyuncs.com # default: https://index.docker.io/v1/
+        username: "${{ secrets.ACR_USERNAME }}"
+        password: "${{ secrets.ACR_PASSWORD }}"
     - name: Build and push image to ALi ECR
       env:
         IMAGE_TAG: ${{ github.sha }}
