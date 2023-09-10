@@ -1,0 +1,28 @@
+
+name: Deploy to production
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: Build image
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Login to ACR
+      uses: aliyun/acr-login@v1
+      with:
+        region-id: cn-hangzhou # example: cn-hangzhou
+        access-key-id: "${{ secrets.ALI_ACCESS_KEY_ID }}"
+        access-key-secret: "${{ secrets.ALI_ACCESS_KEY_SECRET }}"
+    - name: Build and push image to ALi ECR
+      env:
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+            docker build -t registry.cn-hangzhou.aliyuncs.com/csdiy/simplebank:$IMAGE_TAG .
+            docker push registry.cn-hangzhou.aliyuncs.com/csdiy/simplebank:$IMAGE_TAG
+
+# docker build -t registry.cn-hangzhou.aliyuncs.com/myrepo/demo:$IMAGE_TAG .
