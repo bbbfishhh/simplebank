@@ -23,7 +23,7 @@ jobs:
       env:
         IMAGE_TAG: ${{ github.sha }}
       run: |
-            docker build . --file Dockerfile --tag registry.cn-hangzhou.aliyuncs.com/csdiy/simplebank:$IMAGE_TAG
+            docker build --tag registry.cn-hangzhou.aliyuncs.com/csdiy/simplebank:$IMAGE_TAG -f Dockerfile . 
             docker push registry.cn-hangzhou.aliyuncs.com/csdiy/simplebank:$IMAGE_TAG
 
 # docker build -t registry.cn-hangzhou.aliyuncs.com/myrepo/demo:$IMAGE_TAG .
